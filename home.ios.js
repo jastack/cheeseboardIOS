@@ -30,7 +30,8 @@ export default class Home extends React.Component {
 
   getPizza(){
     const date = this.getDate();
-    fetch('https://cheeseboardapi.herokuapp.com/api/week/${date}')
+    const address = 'https://cheeseboardapi.herokuapp.com/api/week/' + date;
+    fetch(address)
     .then((response) => response.json())
     .then((responsedata) => {
       this.setState({pizza: responsedata, refreshing: false});
