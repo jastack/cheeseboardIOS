@@ -32,11 +32,13 @@ export default class Search extends React.Component {
   }
 
   searchPizza(text){
-    const string = text;
-    const address = 'https://cheeseboardapi.herokuapp.com/pizzas/' + string;
+    const string = '%20' + text.replace(" ", "%20");
+    console.log(string);
+    const address = 'https://cheeseboardapi.herokuapp.com/api/pizza/' + string;
     fetch(address)
      .then(response => response.json())
      .then(responsedata => {
+       console.log(responsedata);
       this.setState({pizza: responsedata});
     });
   }
