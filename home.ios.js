@@ -29,11 +29,20 @@ export default class Home extends React.Component {
   }
 
   getPizza(){
-    fetch('https://cheeseboardapi.herokuapp.com/api/week')
+    const date = this.getDate();
+    fetch('https://cheeseboardapi.herokuapp.com/api/week/${date}')
     .then((response) => response.json())
     .then((responsedata) => {
       this.setState({pizza: responsedata, refreshing: false});
     });
+  }
+
+  getDate(){
+    const date = new Date();
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    return year + "-" + month + "-" + day;
   }
 
 
